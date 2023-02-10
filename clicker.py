@@ -33,7 +33,6 @@ import json
 # Library to stop code with sys.exit.
 import sys
 
-
 functionToContinueFrom = False
 didntFindElement = False
 outOfClicks = False
