@@ -17,12 +17,17 @@ from selenium.common.exceptions import NoSuchElementException
 # Library to wait predefined amount.
 from time import sleep
 
+# Libraries to change images.
 import cv2
 import numpy as np
-import requests
 
 # Library to convert images to bytes.
 import io
+
+# Library to send post request to ocr.space.
+import requests
+
+# Library to understand results from ocr.space.
 import json
 
 # Library to stop code with sys.exit.
