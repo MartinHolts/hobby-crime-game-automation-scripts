@@ -1,24 +1,31 @@
+# Libraries to start up chrome.
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.keys import Keys
-from time import sleep
 
-import os
-
+# Libraries to find HTML elements.
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait as wait
+
+# Library to insert keys into input fields or otherwise.
+from selenium.webdriver.common.keys import Keys
+
+# Libraries to recognize TimeoutException and NoSuchElementException in except clause.
 from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import NoSuchElementException
+
+# Library to wait predefined amount.
+from time import sleep
 
 import cv2
 import numpy as np
 import requests
+
+# Library to convert images to bytes.
 import io
 import json
 
-from selenium.common.exceptions import NoSuchElementException
-
+# Library to stop code with sys.exit.
 import sys
 
 
@@ -263,7 +270,7 @@ def solveCaptcha():
     except TimeoutException:
         print('Timeout - No input found for captcha text field')
         
-    # Click on VASTAMISEKS VAJUTA SIIA button to solve the captcha
+    # Click on "VASTAMISEKS VAJUTA SIIA" button to solve the captcha.
     try:
         inputUserName = wait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,"/html/body/div/div[2]/table/tbody/tr/td/table/tbody/tr[3]/td/form[2]/input[2]")))
         inputUserName.click()
@@ -279,10 +286,7 @@ def solveCaptcha():
         print('Timeout - Solved captcha sucessfully')
 
     
-    # Go back to mix drinks
-    enterKitchen()
-    enterWineCellar()
-    selectDrinkLevel()
+    # Continue making drinks.
     mixDrinks()
 
 # Main function. All the code starts from here and is the only one that calls other functions.
