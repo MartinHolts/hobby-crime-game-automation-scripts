@@ -115,9 +115,9 @@ def mixDrinks():
     i = 1
     while i < 10000:
         try:
-            mixDrink = wait(driver, 3).until(EC.visibility_of_element_located((By.XPATH,"//input [@id='" + MIXDRINKSBUTTON + "']")))
+            mixDrink = wait(driver, 1).until(EC.visibility_of_element_located((By.XPATH,"//input [@id='" + MIXDRINKSBUTTON + "']")))
             mixDrink.click()
-            sleep(0.1)
+            sleep(0.5)
             i += 1
             print('Found button for mixing drinks ' + str(i))
         except TimeoutException:
@@ -128,7 +128,7 @@ def mixDrinks():
 def checkForCaptcha():
     try:
         # Check for captcha text.
-        wait(driver, 10).until(EC.presence_of_element_located((By.XPATH,"/html/body/div[2]/div[3]/div[3]/div[1]/div/div/p")))
+        wait(driver, 1).until(EC.presence_of_element_located((By.XPATH,"/html/body/div[2]/div[3]/div[3]/div[1]/div/div/p")))
         print('Found text for captcha')
         global foundCaptcha
         foundCaptcha == True
@@ -235,28 +235,27 @@ def solveCaptcha():
     
     # Enter the number into captcha text field
     try:
-        inputUserName = wait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,"/html/body/div[2]/div[3]/div[3]/div[1]/table/tbody/tr/td[2]/p/input[1]")))
-        inputUserName.send_keys(text_detected)
+        inputCaptcha = wait(driver, 1).until(EC.visibility_of_element_located((By.XPATH,"/html/body/div[2]/div[3]/div[3]/div[1]/table/tbody/tr/td[2]/p/input[1]")))
+        inputCaptcha.send_keys(text_detected)
         print('Found input for captcha text field')
     except TimeoutException:
         print('Timeout - No input found for captcha text field')
         
     # Click on "VASTAMISEKS VAJUTA SIIA" button to solve the captcha.
     try:
-        inputUserName = wait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,"/html/body/div/div[2]/table/tbody/tr/td/table/tbody/tr[3]/td/form[2]/input[2]")))
-        inputUserName.click()
+        enterCaptchaButton = wait(driver, 1).until(EC.visibility_of_element_located((By.XPATH,"/html/body/div/div[2]/table/tbody/tr/td/table/tbody/tr[3]/td/form[2]/input[2]")))
+        enterCaptchaButton.click()
         print('Clicked on solve captcha button')
     except TimeoutException:
         print('Timeout - didnt find solve captcha button')
 
     # Check for captcha button again to see if it solved captcha.
     try:
-        inputUserName = wait(driver, 3).until(EC.visibility_of_element_located((By.XPATH,"/html/body/div/div[2]/table/tbody/tr/td/table/tbody/tr[3]/td/form[2]/input[2]")))
+        wait(driver, 1).until(EC.visibility_of_element_located((By.XPATH,"/html/body/div/div[2]/table/tbody/tr/td/table/tbody/tr[3]/td/form[2]/input[2]")))
         sys.exit("Captcha solving failed")
     except TimeoutException:
         print('Timeout - Solved captcha sucessfully')
 
-    
     # Continue making drinks.
     mixDrinks()
 
