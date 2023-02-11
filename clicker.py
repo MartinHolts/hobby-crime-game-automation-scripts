@@ -260,10 +260,8 @@ def solveCaptcha():
     mixDrinks()
 
 # Main function. All the code starts from here and is the only one that calls other functions.
-def main():
+while True:
     setUpSettingsAndLogIn()
     getToMixingDrinks()
 
     mixDrinks()
-
-main()
