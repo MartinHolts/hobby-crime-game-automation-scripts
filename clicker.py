@@ -33,11 +33,6 @@ import json
 # Library to stop code with sys.exit.
 import sys
 
-functionToContinueFrom = False
-didntFindElement = False
-outOfClicks = False
-foundCaptcha = False
-
 # Sets windows size, goes to crime website and logs in.
 def setUpSettingsAndLogIn():
     # Change window size
@@ -84,12 +79,6 @@ def enterKitchen():
         sleep(0.5)
     except TimeoutException:
         print('Timeout - No button found for kitchen')
-        # Name didntFindElement to True so main function knows to check for out of tries and captcha.
-        global didntFindElement
-        didntFindElement = True
-        # Name functionToContinueFrom to current function so main function knows where to continue from after solving captcha.
-        global functionToContinueFrom
-        functionToContinueFrom = enterKitchen
         solveCaptcha()
 
 # Enter wine cellar
@@ -101,12 +90,6 @@ def enterWineCellar():
         sleep(0.5)
     except TimeoutException:
         print('Timeout - No button found for wine cellar')
-        # Name didntFindElement to True so main function knows to check for out of tries and captcha.
-        global didntFindElement
-        didntFindElement = True
-        # Name functionToContinueFrom to current function so main function knows where to continue from after solving captcha.
-        global functionToContinueFrom
-        functionToContinueFrom = enterWineCellar
 
 # Select level 110 wine  
 def selectDrinkLevel():
@@ -116,12 +99,6 @@ def selectDrinkLevel():
         print('Found button for level selector')
     except TimeoutException:
         print('Timeout - No button found for level selector')
-        # Name didntFindElement to True so main function knows to check for out of tries and captcha.
-        global didntFindElement
-        didntFindElement = True
-        # Name functionToContinueFrom to current function so main function knows where to continue from after solving captcha.
-        global functionToContinueFrom
-        functionToContinueFrom = selectDrinkLevel
         
 # Click on mix drink
 def mixDrinks():
@@ -135,28 +112,7 @@ def mixDrinks():
             print('Found button for wine ' + str(i))
         except TimeoutException:
             print('Timeout - No button found for wine')
-            # Name didntFindElement to True so main function knows to check for out of tries and captcha.
-            global didntFindElement
-            didntFindElement = True
-            # Name functionToContinueFrom to current function so main function knows where to continue from after solving captcha.
-            global functionToContinueFrom
-            functionToContinueFrom = mixDrinks
             solveCaptcha()
-
-# Check if out of clicks for free user
-#def checkForOutOfClicks():
-#    try:
-#        CaptchaText = wait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,"/html/body/div[1]/div[2]/table/tbody/tr/td/p[1]/strong[1]")))
-#        print('Found text for out of clicks')
-#        global outOfClicks
-#        outOfClicks == True
-#    except TimeoutException:
-#        print('Timeout - No text found for out of clicks')
-        
-# Wait for click to return
-#def waitForClicksToReturn():
-    # Wait for click to return in this part
-#    something = Null
 
 # Check if captcha appeared
 def checkForCaptcha():
@@ -304,6 +260,3 @@ def main():
     mixDrinks()
 
 main()
-
-
-
