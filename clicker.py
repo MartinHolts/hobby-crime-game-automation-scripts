@@ -121,15 +121,16 @@ def mixDrinks():
             mixDrink.click()
             sleep(0.1)
             i += 1
-            print('Found button for wine ' + str(i))
+            print('Found button for mixing drinks ' + str(i))
         except TimeoutException:
-            print('Timeout - No button found for wine')
+            print('Timeout - No button found for mixing drinks')
             solveCaptcha()
 
 # Check if captcha appeared
 def checkForCaptcha():
     try:
-        CaptchaText = wait(driver, 10).until(EC.presence_of_element_located((By.XPATH,"/html/body/div[2]/div[3]/div[3]/div[1]/div/div/p")))
+        # Check for captcha text.
+        wait(driver, 10).until(EC.presence_of_element_located((By.XPATH,"/html/body/div[2]/div[3]/div[3]/div[1]/div/div/p")))
         print('Found text for captcha')
         global foundCaptcha
         foundCaptcha == True
