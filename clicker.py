@@ -99,7 +99,7 @@ def selectDrinkLevel():
         print('Found button for level selector')
     except TimeoutException:
         print('Timeout - No button found for level selector')
-        
+
 # Click on mix drink
 def mixDrinks():
     i = 1
