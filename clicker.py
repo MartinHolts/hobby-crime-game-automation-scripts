@@ -37,6 +37,9 @@ import sys
 WORLD = 'red'
 USERNAME = 'ToiletFace9000'
 PASSWORD = 'midagiuut'
+# ml_kitchen(Köök), ml_cellar(Veinikelder), ml_aerator(Gaseerimismasin), ml_distiller(Puskarimasin), ml_cider(Siidriruum), ml_blender(Mahlamasin)
+FOODROOM = 'ml_kitchen'
+DRINKLEVEL = 100
 
 # Sets windows size, goes to crime website and logs in.
 def setUpSettingsAndLogIn():
@@ -75,30 +78,30 @@ def setUpSettingsAndLogIn():
         print('Timeout - No input found for password')
         sleep(0.5)
 
-# Enter kitchen
-def enterKitchen():
+# Enter "Kõrts ja Söökla"
+def enterTavern():
     try:
-        Kitchen = wait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,"//a [@href='?asukoht=tavern']")))
-        Kitchen.click()
-        print('Found button for kitchen')
+        tavern = wait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,"//a [@href='?asukoht=tavern']")))
+        tavern.click()
+        print('Found button for tavern')
         sleep(0.5)
     except TimeoutException:
-        print('Timeout - No button found for kitchen')
+        print('Timeout - No button found for tavern')
 
-# Enter wine cellar
-def enterWineCellar():
+# Enter "Köök"
+def enterFoodRoom():
     try:
-        WineCellar = wait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,"//li [@id='ml_kitchen']")))
-        WineCellar.click()
+        foodRoom = wait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,"//li [@id='" + FOODROOM + "']")))
+        foodRoom.click()
         print('Found button for wine cellar')
         sleep(0.5)
     except TimeoutException:
         print('Timeout - No button found for wine cellar')
 
-# Select level 110 wine  
+# Select drink level
 def selectDrinkLevel():
     try:
-        LevelSelector = wait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,"//option [@value='33']")))
+        LevelSelector = wait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,"//option [@value='" + DRINKLEVEL + "']")))
         LevelSelector.click()
         print('Found button for level selector')
     except TimeoutException:
@@ -257,8 +260,8 @@ def solveCaptcha():
 def main():
     setUpSettingsAndLogIn()
 
-    enterKitchen()
-    enterWineCellar()
+    enterTavern()
+    enterFoodRoom()
     selectDrinkLevel()
 
     mixDrinks()
