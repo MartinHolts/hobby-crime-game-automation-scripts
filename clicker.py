@@ -35,16 +35,16 @@ import sys
 
 # Sets windows size, goes to crime website and logs in.
 def setUpSettingsAndLogIn():
-    # Change window size
+    # Change window size.
     options = Options()
     options.add_argument("--window-size=1500,900")
 
-    # Open crime website
+    # Open crime website.
     global driver
     driver = webdriver.Chrome(options=options)
     driver.get("https://crime.ee/")
 
-    # Expand red world
+    # Expand "punane" world.
     try:
         folder = wait(driver, 10).until(EC.presence_of_element_located((By.XPATH,"//span[@id='red']")))
         folder.click()
@@ -79,7 +79,6 @@ def enterKitchen():
         sleep(0.5)
     except TimeoutException:
         print('Timeout - No button found for kitchen')
-        solveCaptcha()
 
 # Enter wine cellar
 def enterWineCellar():
