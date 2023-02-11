@@ -35,8 +35,8 @@ import sys
 
 # Setup variables.
 WORLD = 'red'
-USERNAME = 'ToiletFace9000'
-PASSWORD = 'midagiuut'
+USERNAME = 'uusmidagi'
+PASSWORD = 'uusmidagi123'
 
 # ml_kitchen(Köök), ml_cellar(Veinikelder), ml_aerator(Gaseerimismasin), ml_distiller(Puskarimasin), ml_cider(Siidriruum), ml_blender(Mahlamasin)
 FOODROOM = 'ml_kitchen'
