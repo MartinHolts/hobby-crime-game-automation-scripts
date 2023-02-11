@@ -264,9 +264,6 @@ def solveCaptcha():
 def main():
     setUpSettingsAndLogIn()
     getToMixingDrinks()
-    enterTavern()
-    enterFoodRoom()
-    selectDrinkLevel()
 
     mixDrinks()
 
