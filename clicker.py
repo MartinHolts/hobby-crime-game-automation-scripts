@@ -37,9 +37,14 @@ import sys
 WORLD = 'red'
 USERNAME = 'ToiletFace9000'
 PASSWORD = 'midagiuut'
+
 # ml_kitchen(Köök), ml_cellar(Veinikelder), ml_aerator(Gaseerimismasin), ml_distiller(Puskarimasin), ml_cider(Siidriruum), ml_blender(Mahlamasin)
 FOODROOM = 'ml_kitchen'
 DRINKLEVEL = 100
+
+# nupuke420_kitchen(Köök), nupuke420_cellar(Veinikelder), nupuke420_aerator(Gaseerimismasin)
+# nupuke420_distiller(Puskarimasin), nupuke420_cider(Siidriruum), nupuke420_blender(Mahlamasin)
+MIXDRINKSBUTTON = 'nupuke420_kitchen'
 
 # Sets windows size, goes to crime website and logs in.
 def setUpSettingsAndLogIn():
@@ -101,8 +106,8 @@ def enterFoodRoom():
 # Select drink level
 def selectDrinkLevel():
     try:
-        LevelSelector = wait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,"//option [@value='" + DRINKLEVEL + "']")))
-        LevelSelector.click()
+        levelSelector = wait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,"//option [@value='" + DRINKLEVEL + "']")))
+        levelSelector.click()
         print('Found button for level selector')
     except TimeoutException:
         print('Timeout - No button found for level selector')
@@ -112,8 +117,8 @@ def mixDrinks():
     i = 1
     while i < 10000:
         try:
-            WineButton = wait(driver, 3).until(EC.visibility_of_element_located((By.XPATH,"//input [@id='nupuke420_kitchen']")))
-            WineButton.click()
+            mixDrink = wait(driver, 3).until(EC.visibility_of_element_located((By.XPATH,"//input [@id='" + MIXDRINKSBUTTON "']")))
+            mixDrink.click()
             sleep(0.1)
             i += 1
             print('Found button for wine ' + str(i))
