@@ -115,7 +115,7 @@ def mixDrinks():
     i = 1
     while i < 10000:
         try:
-            mixDrink = wait(driver, 3).until(EC.visibility_of_element_located((By.XPATH,"//input [@id='" + MIXDRINKSBUTTON "']")))
+            mixDrink = wait(driver, 3).until(EC.visibility_of_element_located((By.XPATH,"//input [@id='" + MIXDRINKSBUTTON + "']")))
             mixDrink.click()
             sleep(0.1)
             i += 1
