@@ -33,6 +33,11 @@ import json
 # Library to stop code with sys.exit.
 import sys
 
+# Setup variables.
+world = 'red';
+userName = 'ToiletFace9000';
+passWord = 'midagiuut';
+
 # Sets windows size, goes to crime website and logs in.
 def setUpSettingsAndLogIn():
     # Change window size.
@@ -46,7 +51,7 @@ def setUpSettingsAndLogIn():
 
     # Expand "punane" world.
     try:
-        folder = wait(driver, 10).until(EC.presence_of_element_located((By.XPATH,"//span[@id='red']")))
+        folder = wait(driver, 10).until(EC.presence_of_element_located((By.XPATH,"//span[@id='" + world + "']")))
         folder.click()
         print('Found button for red world')
     except TimeoutException:
@@ -55,7 +60,7 @@ def setUpSettingsAndLogIn():
     # Type username
     try:
         inputUserName = wait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,"//input[@id='username6']")))
-        inputUserName.send_keys("ToiletFace9000")
+        inputUserName.send_keys(userName)
         print('Found input for username')
     except TimeoutException:
         print('Timeout - No input found for username')
@@ -63,7 +68,7 @@ def setUpSettingsAndLogIn():
     # Type password
     try:
         inputPassword = wait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,"//input[@id='password6']")))
-        inputPassword.send_keys("midagiuut")
+        inputPassword.send_keys(passWord)
         inputPassword.send_keys(Keys.ENTER);
         print('Found input for password')
     except TimeoutException:
