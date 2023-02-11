@@ -34,9 +34,9 @@ import json
 import sys
 
 # Setup variables.
-world = 'red';
-userName = 'ToiletFace9000';
-passWord = 'midagiuut';
+WORLD = 'red'
+USERNAME = 'ToiletFace9000'
+PASSWORD = 'midagiuut'
 
 # Sets windows size, goes to crime website and logs in.
 def setUpSettingsAndLogIn():
@@ -51,7 +51,7 @@ def setUpSettingsAndLogIn():
 
     # Expand "punane" world.
     try:
-        folder = wait(driver, 10).until(EC.presence_of_element_located((By.XPATH,"//span[@id='" + world + "']")))
+        folder = wait(driver, 10).until(EC.presence_of_element_located((By.XPATH,"//span[@id='" + WORLD + "']")))
         folder.click()
         print('Found button for red world')
     except TimeoutException:
@@ -60,7 +60,7 @@ def setUpSettingsAndLogIn():
     # Type username
     try:
         inputUserName = wait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,"//input[@id='username6']")))
-        inputUserName.send_keys(userName)
+        inputUserName.send_keys(USERNAME)
         print('Found input for username')
     except TimeoutException:
         print('Timeout - No input found for username')
@@ -68,8 +68,8 @@ def setUpSettingsAndLogIn():
     # Type password
     try:
         inputPassword = wait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,"//input[@id='password6']")))
-        inputPassword.send_keys(passWord)
-        inputPassword.send_keys(Keys.ENTER);
+        inputPassword.send_keys(PASSWORD)
+        inputPassword.send_keys(Keys.ENTER)
         print('Found input for password')
     except TimeoutException:
         print('Timeout - No input found for password')
