@@ -38,9 +38,10 @@ WORLD = 'red'
 USERNAME = 'uusmidagi'
 PASSWORD = 'uusmidagi123'
 
-# ml_kitchen(Köök), ml_cellar(Veinikelder), ml_aerator(Gaseerimismasin), ml_distiller(Puskarimasin), ml_cider(Siidriruum), ml_blender(Mahlamasin)
+# ml_kitchen(Köök), ml_cellar(Veinikelder), ml_aerator(Gaseerimismasin)
+# ml_distiller(Puskarimasin), ml_cider(Siidriruum), ml_blender(Mahlamasin)
 FOODROOM = 'ml_kitchen'
-DRINKLEVEL = '53'
+DRINKLEVEL = '1'
 
 # nupuke420_kitchen(Köök), nupuke420_cellar(Veinikelder), nupuke420_aerator(Gaseerimismasin)
 # nupuke420_distiller(Puskarimasin), nupuke420_cider(Siidriruum), nupuke420_blender(Mahlamasin)
