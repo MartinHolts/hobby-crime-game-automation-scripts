@@ -117,7 +117,7 @@ def mixDrinks():
         try:
             mixDrink = wait(driver, 1).until(EC.visibility_of_element_located((By.XPATH,"//input [@id='" + MIXDRINKSBUTTON + "']")))
             mixDrink.click()
-            sleep(0.5)
+            sleep(0.1)
             i += 1
             print('Found button for mixing drinks ' + str(i))
         except TimeoutException:
