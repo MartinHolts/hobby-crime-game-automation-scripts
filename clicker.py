@@ -84,7 +84,7 @@ def setUpSettingsAndLogIn():
         sleep(0.5)
 
 # Enter "Kõrts ja Söökla"
-def enterTavern():
+def getToMixingDrinks():
     try:
         tavern = wait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,"//a [@href='?asukoht=tavern']")))
         tavern.click()
@@ -93,8 +93,7 @@ def enterTavern():
     except TimeoutException:
         print('Timeout - No button found for tavern')
 
-# Enter "Köök"
-def enterFoodRoom():
+    # Enter food room like "köök"
     try:
         foodRoom = wait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,"//li [@id='" + FOODROOM + "']")))
         foodRoom.click()
@@ -103,8 +102,7 @@ def enterFoodRoom():
     except TimeoutException:
         print('Timeout - No button found for wine cellar')
 
-# Select drink level
-def selectDrinkLevel():
+    # Select drink level
     try:
         levelSelector = wait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,"//option [@value='" + DRINKLEVEL + "']")))
         levelSelector.click()
@@ -265,7 +263,7 @@ def solveCaptcha():
 # Main function. All the code starts from here and is the only one that calls other functions.
 def main():
     setUpSettingsAndLogIn()
-
+    getToMixingDrinks()
     enterTavern()
     enterFoodRoom()
     selectDrinkLevel()
