@@ -176,6 +176,7 @@ def removeLines():
 
     # Save the modified image
     cv2.imwrite("filenameNoLines.png", img)
+    print("Removed lines from captcha iamge")
 
 def removeColor():
     # Remove color from the image
@@ -203,8 +204,9 @@ def removeColor():
 
     # Save the result
     cv2.imwrite('filenameNoLinesNoColor.png', result)
+    print("Removed color from captcha iamge")
 
-def getNumbersFromImage(text_detected):
+def getNumbersFromImage():
     img = cv2.imread("filenameNoLinesNoColor.png")
     height, width, _ = img.shape
 
@@ -243,7 +245,7 @@ def solveCaptcha():
     removeColor()
 
     # Make text_detected equal to the value gotten from getNumbersFromImage function.
-    text_detected =  getNumbersFromImage()
+    text_detected = getNumbersFromImage()
 
     # If number detection doesn't text number with length of 3 or contains something else than numbers then exit code.
     if not text_detected.isdigit() and len(text_detected) != 3:
