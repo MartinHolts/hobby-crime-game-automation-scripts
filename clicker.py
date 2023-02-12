@@ -13,6 +13,7 @@ from selenium.webdriver.common.keys import Keys
 # Libraries to recognize TimeoutException and NoSuchElementException in except clause.
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import ElementNotInteractableException
 
 # Library to wait predefined amount.
 from time import sleep
@@ -121,7 +122,7 @@ def mixDrinks():
             sleep(0.1)
             i += 1
             print('Found button for mixing drinks ' + str(i))
-        except TimeoutException:
+        except (TimeoutException, ElementNotInteractableException):
             print('Timeout - No button found for mixing drinks')
             if foundCaptcha() == True:
                 solveCaptcha()
