@@ -276,7 +276,7 @@ def solveCaptcha():
     # Continue making drinks.
     mixDrinks()
 
-# Main function. All the code starts from here and is the only one that calls other functions.
+# Main function. All the code starts from here.
 while True:
     setUpSettingsAndLogIn()
     getToMixingDrinks()
