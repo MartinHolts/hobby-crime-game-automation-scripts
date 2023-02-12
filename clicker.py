@@ -41,7 +41,7 @@ PASSWORD = 'uusmidagi123'
 # ml_kitchen(Köök), ml_cellar(Veinikelder), ml_aerator(Gaseerimismasin)
 # ml_distiller(Puskarimasin), ml_cider(Siidriruum), ml_blender(Mahlamasin)
 FOODROOM = 'ml_kitchen'
-DRINKLEVEL = '1'
+DRINKLEVEL = '13'
 
 # nupuke420_kitchen(Köök), nupuke420_cellar(Veinikelder), nupuke420_aerator(Gaseerimismasin)
 # nupuke420_distiller(Puskarimasin), nupuke420_cider(Siidriruum), nupuke420_blender(Mahlamasin)
@@ -123,22 +123,22 @@ def mixDrinks():
             print('Found button for mixing drinks ' + str(i))
         except TimeoutException:
             print('Timeout - No button found for mixing drinks')
-            solveCaptcha()
+            if foundCaptcha() == True:
+                solveCaptcha()
 
 # Check if captcha appeared
-def checkForCaptcha():
+def foundCaptcha():
     try:
         # Check for captcha text.
         wait(driver, 1).until(EC.presence_of_element_located((By.XPATH,"/html/body/div[2]/div[3]/div[3]/div[1]/div/div/p")))
         print('Found text for captcha')
-        global foundCaptcha
-        foundCaptcha == True
+        return True
     except TimeoutException:
         print('Timeout - No text found for captcha')
+        return False
 
-# Solve the captcha
-def solveCaptcha():
-    # Download image
+# Download image
+def downloadImage():
     with open('filename.png', 'wb') as file:
         try:
             #WineButton = wait(driver, 3).until(EC.visibility_of_element_located((By.XPATH,"//input [@id='nupuke420_cellar']")))
@@ -148,7 +148,8 @@ def solveCaptcha():
         except NoSuchElementException:
             print('didt find image file')
 
-    #Remove lines from the image
+#Remove lines from the image
+def removeLines():
     # Read the image
     img = cv2.imread("filename.png")
 
@@ -175,6 +176,7 @@ def solveCaptcha():
     # Save the modified image
     cv2.imwrite("filenameNoLines.png", img)
 
+def removeColor():
     # Remove color from the image
     # Load the image
     img = cv2.imread('filenameNoLines.png')
@@ -201,6 +203,7 @@ def solveCaptcha():
     # Save the result
     cv2.imwrite('filenameNoLinesNoColor.png', result)
 
+def getNumbersFromImage(text_detected):
     img = cv2.imread("filenameNoLinesNoColor.png")
     height, width, _ = img.shape
 
@@ -229,6 +232,17 @@ def solveCaptcha():
     parsed_results = result.get("ParsedResults")[0]
     text_detected = parsed_results.get("ParsedText")
     print(text_detected)
+    return text_detected
+
+# Solve the captcha
+def solveCaptcha():
+
+    downloadImage()
+    removeLines()
+    removeColor()
+
+    # Make text_detected equal to the value gotten from getNumbersFromImage function.
+    text_detected =  getNumbersFromImage()
 
     # If number detection doesn't text number with length of 3 or contains something else than numbers then exit code.
     if not text_detected.isdigit() and len(text_detected) != 3:
