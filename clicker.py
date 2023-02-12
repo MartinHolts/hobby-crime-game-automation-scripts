@@ -237,7 +237,7 @@ def getNumbersFromImage():
     print("Detected numbers from captcha are: " + text_detected)
     return text_detected
 
-def insertAndSendCaptcha():
+def insertAndSendCaptcha(text_detected):
     # Enter the number into captcha text field
     try:
         inputCaptcha = wait(driver, 1).until(EC.visibility_of_element_located((By.XPATH,"/html/body/div[2]/div[3]/div[3]/div[1]/table/tbody/tr/td[2]/p/input[1]")))
@@ -262,13 +262,13 @@ def solveCaptcha():
     removeColor()
 
     # Make text_detected equal to the value gotten from getNumbersFromImage function.
-    #text_detected = getNumbersFromImage()
+    text_detected = getNumbersFromImage()
     
     # If number detection doesn't text number with length of 3 or contains something else than numbers then exit code.
     #if not text_detected.isdigit() and len(text_detected) != 3:
     #    sys.exit("Captcha result is not 3 digits long")
 
-    insertAndSendCaptcha()
+    insertAndSendCaptcha(text_detected)
 
     while foundCaptcha() == True:
         sleep(0.1)
