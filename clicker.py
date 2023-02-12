@@ -42,7 +42,7 @@ PASSWORD = 'uusmidagi123'
 # ml_kitchen(Köök), ml_cellar(Veinikelder), ml_aerator(Gaseerimismasin)
 # ml_distiller(Puskarimasin), ml_cider(Siidriruum), ml_blender(Mahlamasin)
 FOODROOM = 'ml_kitchen'
-DRINKLEVEL = '13'
+DRINKLEVEL = '1'
 
 # nupuke420_kitchen(Köök), nupuke420_cellar(Veinikelder), nupuke420_aerator(Gaseerimismasin)
 # nupuke420_distiller(Puskarimasin), nupuke420_cider(Siidriruum), nupuke420_blender(Mahlamasin)
@@ -234,23 +234,10 @@ def getNumbersFromImage():
 
     parsed_results = result.get("ParsedResults")[0]
     text_detected = parsed_results.get("ParsedText")
-    print(text_detected)
+    print("Detected numbers from captcha are: " + text_detected)
     return text_detected
 
-# Solve the captcha
-def solveCaptcha():
-
-    downloadImage()
-    removeLines()
-    removeColor()
-
-    # Make text_detected equal to the value gotten from getNumbersFromImage function.
-    text_detected = getNumbersFromImage()
-
-    # If number detection doesn't text number with length of 3 or contains something else than numbers then exit code.
-    if not text_detected.isdigit() and len(text_detected) != 3:
-        sys.exit("Captcha result is not 3 digits long")
-    
+def insertAndSendCaptcha():
     # Enter the number into captcha text field
     try:
         inputCaptcha = wait(driver, 1).until(EC.visibility_of_element_located((By.XPATH,"/html/body/div[2]/div[3]/div[3]/div[1]/table/tbody/tr/td[2]/p/input[1]")))
@@ -267,12 +254,24 @@ def solveCaptcha():
     except TimeoutException:
         print('Timeout - didnt find solve captcha button')
 
-    # Check for captcha button again to see if it solved captcha.
-    try:
-        wait(driver, 1).until(EC.visibility_of_element_located((By.XPATH,"/html/body/div/div[2]/table/tbody/tr/td/table/tbody/tr[3]/td/form[2]/input[2]")))
-        sys.exit("Captcha solving failed")
-    except TimeoutException:
-        print('Timeout - Solved captcha sucessfully')
+# Solve the captcha
+def solveCaptcha():
+
+    downloadImage()
+    removeLines()
+    removeColor()
+
+    # Make text_detected equal to the value gotten from getNumbersFromImage function.
+    #text_detected = getNumbersFromImage()
+    
+    # If number detection doesn't text number with length of 3 or contains something else than numbers then exit code.
+    #if not text_detected.isdigit() and len(text_detected) != 3:
+    #    sys.exit("Captcha result is not 3 digits long")
+
+    insertAndSendCaptcha()
+
+    while foundCaptcha() == True:
+        sleep(0.1)
 
     # Continue making drinks.
     mixDrinks()
