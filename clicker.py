@@ -35,6 +35,7 @@ import json
 import sys
 
 # Setup variables.
+# white, blue, green, black, red
 WORLD = 'red'
 USERNAME = 'uusmidagi'
 PASSWORD = 'uusmidagi123'
