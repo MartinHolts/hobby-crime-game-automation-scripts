@@ -240,7 +240,7 @@ def getNumbersFromImage():
 def insertAndSendCaptcha(text_detected):
     # Enter the number into captcha text field
     try:
-        inputCaptcha = wait(driver, 1).until(EC.visibility_of_element_located((By.XPATH,"/html/body/div[2]/div[3]/div[3]/div[1]/table/tbody/tr/td[2]/p/input[1]")))
+        inputCaptcha = wait(driver, 1).until(EC.visibility_of_element_located((By.XPATH,"//input[@maxlenght] | //input[@maxlength]")))
         inputCaptcha.send_keys(text_detected)
         print('Found input for captcha text field')
     except TimeoutException:
