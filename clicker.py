@@ -131,7 +131,7 @@ def mixDrinks():
 def foundCaptcha():
     try:
         # Check for captcha text.
-        wait(driver, 1).until(EC.presence_of_element_located((By.XPATH,"//button[@class='butn nbt']")))
+        wait(driver, 1).until(EC.visibility_of_element_located((By.XPATH,"//button[@class='butn nbt']")))
         print('Found text for captcha')
         return True
     except TimeoutException:
