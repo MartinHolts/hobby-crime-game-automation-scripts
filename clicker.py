@@ -125,7 +125,7 @@ def getToMixingDrinks():
 
 # Click on mix drink
 def mixDrinks():
-    not_yet_mixing == False
+    not_yet_mixing = False
     i = 1
     while i < 10000:
         try:
