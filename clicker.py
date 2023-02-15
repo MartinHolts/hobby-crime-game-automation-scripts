@@ -49,6 +49,9 @@ DRINKLEVEL = '1'
 # nupuke420_distiller(Puskarimasin), nupuke420_cider(Siidriruum), nupuke420_blender(Mahlamasin)
 MIXDRINKSBUTTON = 'nupuke420_kitchen'
 
+# Global variable not meant to be changed for setup.
+not_yet_mixing = None
+
 # Sets windows size, goes to crime website and logs in.
 def setUpSettingsAndLogIn():
     # Change window size.
@@ -95,7 +98,6 @@ def getToMixingDrinks():
         sleep(0.5)
     except TimeoutException:
         print('Timeout - No button found for tavern')
-        global not_yet_mixing
         not_yet_mixing = True
         if foundCaptcha() == True:
             solveCaptcha()
