@@ -245,6 +245,12 @@ def getNumbersFromImage():
     result = json.loads(result)
 
     parsed_results = result.get("ParsedResults")[0]
+
+#    if result is not None and "ParsedResults" in result and len(result["ParsedResults"]) > 0:
+#        parsed_results = result["ParsedResults"][0]
+#    else:
+#        parsed_results = None
+
     text_detected = parsed_results.get("ParsedText")
     print("Detected numbers from captcha are: " + '" ' + text_detected + '"')
     return text_detected
@@ -260,7 +266,7 @@ def insertAndSendCaptcha(text_detected):
         
     # Click on "VASTAMISEKS VAJUTA SIIA" button to solve the captcha.
     try:
-        enterCaptchaButton = wait(driver, 1).until(EC.visibility_of_element_located((By.XPATH,"//button[@class='butn lbt'] | //input[@class='butn abt']")))
+        enterCaptchaButton = wait(driver, 1).until(EC.visibility_of_element_located((By.XPATH,"//button[@class='butn lbt'] | //input[@class='butn abt' and not(@name)]")))
         enterCaptchaButton.click()
         print('Clicked on solve captcha button')
     except TimeoutException:
