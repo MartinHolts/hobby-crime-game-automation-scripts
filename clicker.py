@@ -95,6 +95,9 @@ def getToMixingDrinks():
         sleep(0.5)
     except TimeoutException:
         print('Timeout - No button found for tavern')
+        if foundCaptcha() == True:
+            solveCaptcha()
+            getToMixingDrinks()
 
     # Enter food room like "köök"
     try:
@@ -144,7 +147,7 @@ def downloadImage():
     with open('filename.png', 'wb') as file:
         try:
             #WineButton = wait(driver, 3).until(EC.visibility_of_element_located((By.XPATH,"//input [@id='nupuke420_cellar']")))
-            file.write(driver.find_element("xpath", '/html/body/div[2]/div[3]/div[3]/div[1]/table/tbody/tr/td[1]/img').screenshot_as_png)
+            file.write(driver.find_element("xpath", "//img[@src[contains(.,'etjssd')]]").screenshot_as_png)
             #/html/body/div[2]/div[3]/div[3]/div[1]/table/tbody/tr/td[1]/img For the small screen image popup
             print("Downloaded image")
         except NoSuchElementException:
