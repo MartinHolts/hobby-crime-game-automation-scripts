@@ -248,7 +248,7 @@ def insertAndSendCaptcha(text_detected):
         
     # Click on "VASTAMISEKS VAJUTA SIIA" button to solve the captcha.
     try:
-        enterCaptchaButton = wait(driver, 1).until(EC.visibility_of_element_located((By.XPATH,"/html/body/div/div[2]/table/tbody/tr/td/table/tbody/tr[3]/td/form[2]/input[2]")))
+        enterCaptchaButton = wait(driver, 1).until(EC.visibility_of_element_located((By.XPATH,"//button[@class='butn lbt'] | //input[@class='butn abt']")))
         enterCaptchaButton.click()
         print('Clicked on solve captcha button')
     except TimeoutException:
