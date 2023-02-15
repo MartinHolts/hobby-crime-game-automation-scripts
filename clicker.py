@@ -91,6 +91,8 @@ def setUpSettingsAndLogIn():
 
 # Enter "Kõrts ja Söökla"
 def getToMixingDrinks():
+    # Making variable global so the value of the global variable is changed not different local variable is created. 
+    global not_yet_mixing
     try:
         tavern = wait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,"//a [@href='?asukoht=tavern']")))
         tavern.click()
@@ -127,6 +129,8 @@ def getToMixingDrinks():
 
 # Click on mix drink
 def mixDrinks():
+    # Making variable global so the value of the global variable is changed not different local variable is created. 
+    global not_yet_mixing
     not_yet_mixing = False
     i = 1
     while i < 10000:
