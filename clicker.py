@@ -108,7 +108,6 @@ def getToMixingDrinks():
         sleep(0.5)
     except TimeoutException:
         print('Timeout - No button found for wine cellar')
-        global not_yet_mixing
         not_yet_mixing = True
         if foundCaptcha() == True:
             solveCaptcha()
@@ -120,7 +119,6 @@ def getToMixingDrinks():
         print('Found button for level selector')
     except TimeoutException:
         print('Timeout - No button found for level selector')
-        global not_yet_mixing
         not_yet_mixing = True
         if foundCaptcha() == True:
             solveCaptcha()
