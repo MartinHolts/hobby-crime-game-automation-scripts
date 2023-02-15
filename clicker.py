@@ -95,9 +95,10 @@ def getToMixingDrinks():
         sleep(0.5)
     except TimeoutException:
         print('Timeout - No button found for tavern')
+        global not_yet_mixing
+        not_yet_mixing = True
         if foundCaptcha() == True:
             solveCaptcha()
-            getToMixingDrinks()
 
     # Enter food room like "köök"
     try:
@@ -107,6 +108,10 @@ def getToMixingDrinks():
         sleep(0.5)
     except TimeoutException:
         print('Timeout - No button found for wine cellar')
+        global not_yet_mixing
+        not_yet_mixing = True
+        if foundCaptcha() == True:
+            solveCaptcha()
 
     # Select drink level
     try:
@@ -115,9 +120,14 @@ def getToMixingDrinks():
         print('Found button for level selector')
     except TimeoutException:
         print('Timeout - No button found for level selector')
+        global not_yet_mixing
+        not_yet_mixing = True
+        if foundCaptcha() == True:
+            solveCaptcha()
 
 # Click on mix drink
 def mixDrinks():
+    not_yet_mixing == False
     i = 1
     while i < 10000:
         try:
@@ -276,6 +286,9 @@ def solveCaptcha():
 
     while foundCaptcha() == True:
         sleep(0.1)
+
+    if (not_yet_mixing == True):
+        getToMixingDrinks()
 
     # Continue making drinks.
     mixDrinks()
