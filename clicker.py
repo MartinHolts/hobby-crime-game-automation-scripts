@@ -34,6 +34,10 @@ import json
 # Library to stop code with sys.exit.
 import sys
 
+# For moveing image files to another directory.
+import os
+import shutil
+
 # Setup variables.
 # white, blue, green, black, red
 WORLD = 'red'
@@ -278,6 +282,45 @@ def insertAndSendCaptcha(text_detected):
     except TimeoutException:
         print('Timeout - didnt find solve captcha button')
 
+def saveCaptchaImages():
+    # Set the source directory where the files are currently located
+    source_dir = 'my_files/'
+
+    # Set the destination directory where you want to move the files
+    destination_parent_dir = 'my_other_files/'
+
+    # Check if the destination directory exists, if not create it
+    if not os.path.exists(destination_parent_dir):
+        os.makedirs(destination_parent_dir)
+
+    # Set the original filenames of the files you want to move
+    original_filenames = ['filename.png', 'filenameNoLines.png', 'filenameNoLinesNoColor.png']
+
+    # Move each file to the destination directory with a new filename
+    for original_filename in original_filenames:
+        
+        # Check if the source file exists
+        if os.path.exists(source_dir + original_filename):
+            
+            # Set the destination directory for this file type
+            destination_dir = os.path.join(destination_parent_dir, os.path.splitext(original_filename)[1][1:])
+            
+            # Check if the destination directory exists, if not create it
+            if not os.path.exists(destination_dir):
+                os.makedirs(destination_dir)
+
+            # Check if the destination file already exists
+            destination_filename = 'my_new_file' + os.path.splitext(original_filename)[1]
+            number = 1
+            while os.path.exists(os.path.join(destination_dir, destination_filename)):
+                destination_filename = f"my_new_file_{number}" + os.path.splitext(original_filename)[1]
+                number += 1
+            
+            # Move the file to the destination directory with the new filename
+            shutil.move(source_dir + original_filename, os.path.join(destination_dir, destination_filename))
+        else:
+            print(f'File {original_filename} does not exist in the source directory.')
+
 # Solve the captcha
 def solveCaptcha():
 
@@ -294,6 +337,9 @@ def solveCaptcha():
 
     insertAndSendCaptcha(text_detected)
 
+    #Save captcha images into folders
+    saveCaptchaImages()
+    
     while foundCaptcha() == True:
         sleep(0.1)
 
