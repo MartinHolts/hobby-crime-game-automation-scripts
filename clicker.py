@@ -284,7 +284,7 @@ def insertAndSendCaptcha(text_detected):
 
 def saveCaptchaImages():
     # Set the source directory where the files are currently located
-    source_dir = 'my_files/'
+    source_dir = '/'
 
     # Set the destination directory where you want to move the files
     destination_parent_dir = 'my_other_files/'
