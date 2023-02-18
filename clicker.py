@@ -41,13 +41,13 @@ import shutil
 # Setup variables.
 # white, blue, green, black, red
 WORLD = 'red'
-USERNAME = 'uusmidagi'
-PASSWORD = 'uusmidagi123'
+USERNAME = 'uusmidagi1'
+PASSWORD = 'midagiuut'
 
 # ml_kitchen(Köök), ml_cellar(Veinikelder), ml_aerator(Gaseerimismasin)
 # ml_distiller(Puskarimasin), ml_cider(Siidriruum), ml_blender(Mahlamasin)
 FOODROOM = 'ml_kitchen'
-DRINKLEVEL = '23'
+DRINKLEVEL = '1'
 
 # nupuke420_kitchen(Köök), nupuke420_cellar(Veinikelder), nupuke420_aerator(Gaseerimismasin)
 # nupuke420_distiller(Puskarimasin), nupuke420_cider(Siidriruum), nupuke420_blender(Mahlamasin)
@@ -284,7 +284,7 @@ def insertAndSendCaptcha(text_detected):
 
 def saveCaptchaImages():
     # Set the source directory where the files are currently located
-    source_dir = '/'
+    source_dir = ''
 
     # Set the destination directory where you want to move the files
     destination_parent_dir = 'my_other_files/'
