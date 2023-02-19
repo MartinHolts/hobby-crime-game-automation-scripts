@@ -38,6 +38,9 @@ import sys
 import os
 import shutil
 
+# For only keeping numbers in captcha variable.
+import re
+
 # Setup variables.
 # white, blue, green, black, red
 WORLD = 'red'
@@ -256,12 +259,11 @@ def getNumbersFromImage():
 
     parsed_results = result.get("ParsedResults")[0]
 
-#    if result is not None and "ParsedResults" in result and len(result["ParsedResults"]) > 0:
-#        parsed_results = result["ParsedResults"][0]
-#    else:
-#        parsed_results = None
-
     text_detected = parsed_results.get("ParsedText")
+
+    # Only keep numbers in the result.
+    text_detected = re.sub(r"[^0-9]", "", text_detected)
+
     print("Detected numbers from captcha are: " + '" ' + text_detected + '"')
     return text_detected
 
