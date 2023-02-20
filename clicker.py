@@ -262,7 +262,7 @@ def getNumbersFromImage():
     text_detected = parsed_results.get("ParsedText")
 
     # Only keep numbers in the result.
-    text_detected = re.sub(r"[^0-9]", "", text_detected)
+    text_detected = re.sub(r"[^0-9\s]", "", text_detected)
 
     print("Detected numbers from captcha are: " + '" ' + text_detected + '"')
     return text_detected
@@ -283,7 +283,7 @@ def insertAndSendCaptcha(text_detected):
         print('Clicked on solve captcha button')
     except TimeoutException:
         print('Timeout - didnt find solve captcha button')
-
+        
 def saveCaptchaImages():
     # Set the source directory where the files are currently located
     source_dir = ''
@@ -295,26 +295,33 @@ def saveCaptchaImages():
     if not os.path.exists(destination_dir):
         os.makedirs(destination_dir)
 
-    # Set the original filenames of the files you want to move
-    original_filenames = ['filename.png', 'filenameNoLines.png', 'filenameNoLinesNoColor.png']
+    # Define the mapping between old and new filenames as a dictionary
+    filename_mapping = {
+        'filename.png': 'filename.png',
+        'filenameNoLines.png': 'filenameNoLines.png',
+        'filenameNoLinesNoColor.png': 'filenameNoLinesNoColor.png'
+    }
 
     # Move each file to the destination directory with a new filename
-    for original_filename in original_filenames:
+    for original_filename in filename_mapping.keys():
         
         # Check if the source file exists
         if os.path.exists(source_dir + original_filename):
 
+            # Get the new filename for the current file
+            destination_filename = filename_mapping[original_filename]
+            
             # Check if the destination file already exists
-            destination_filename = 'my_new_file' + os.path.splitext(original_filename)[1]
             number = 1
             while os.path.exists(os.path.join(destination_dir, destination_filename)):
-                destination_filename = f"my_new_file_{number}" + os.path.splitext(original_filename)[1]
+                extension = os.path.splitext(original_filename)[1]
+                destination_filename = filename_mapping.get(original_filename, 'default_name') + '_' + str(number) + extension
                 number += 1
             
             # Move the file to the destination directory with the new filename
             shutil.move(source_dir + original_filename, os.path.join(destination_dir, destination_filename))
         else:
-            print(f'File {original_filename} does not exist in the source directory.')
+            print('File ' + original_filename + ' does not exist in the source directory.')
 
 # Solve the captcha
 def solveCaptcha():
