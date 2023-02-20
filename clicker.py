@@ -289,11 +289,11 @@ def saveCaptchaImages():
     source_dir = ''
 
     # Set the destination directory where you want to move the files
-    destination_parent_dir = 'my_other_files/'
+    destination_dir = 'captcha_images/'
 
     # Check if the destination directory exists, if not create it
-    if not os.path.exists(destination_parent_dir):
-        os.makedirs(destination_parent_dir)
+    if not os.path.exists(destination_dir):
+        os.makedirs(destination_dir)
 
     # Set the original filenames of the files you want to move
     original_filenames = ['filename.png', 'filenameNoLines.png', 'filenameNoLinesNoColor.png']
@@ -303,13 +303,6 @@ def saveCaptchaImages():
         
         # Check if the source file exists
         if os.path.exists(source_dir + original_filename):
-            
-            # Set the destination directory for this file type
-            destination_dir = os.path.join(destination_parent_dir, os.path.splitext(original_filename)[1][1:])
-            
-            # Check if the destination directory exists, if not create it
-            if not os.path.exists(destination_dir):
-                os.makedirs(destination_dir)
 
             # Check if the destination file already exists
             destination_filename = 'my_new_file' + os.path.splitext(original_filename)[1]
