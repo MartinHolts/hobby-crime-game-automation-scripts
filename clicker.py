@@ -315,7 +315,7 @@ def saveCaptchaImages():
             number = 1
             while os.path.exists(os.path.join(destination_dir, destination_filename)):
                 extension = os.path.splitext(original_filename)[1]
-                destination_filename = filename_mapping.get(original_filename, 'default_name') + '_' + str(number) + extension
+                destination_filename = filename_mapping.get(original_filename) + '_' + str(number) + extension
                 number += 1
             
             # Move the file to the destination directory with the new filename
