@@ -262,9 +262,9 @@ def getNumbersFromImage():
     text_detected = parsed_results.get("ParsedText")
 
     # Only keep numbers in the result.
-    text_detected = re.sub(r"[^0-9\s]", "", text_detected)
+    text_detected = re.sub(r"[^0-9]", "", text_detected)
 
-    print("Detected numbers from captcha are: " + '" ' + text_detected + '"')
+    print("Detected numbers from captcha are: " + '"' + text_detected + '"')
     return text_detected
 
 def insertAndSendCaptcha(text_detected):
