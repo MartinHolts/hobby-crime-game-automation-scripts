@@ -343,7 +343,7 @@ def solveCaptcha():
     saveCaptchaImages()
     
     while foundCaptcha() == True:
-        sleep(0.1)
+        sleep(0.5)
 
     if (not_yet_mixing == True):
         getToMixingDrinks()
