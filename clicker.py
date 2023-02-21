@@ -101,7 +101,7 @@ def getToMixingDrinks():
     # Making variable global so the value of the global variable is changed not different local variable is created. 
     global not_yet_mixing
     try:
-        tavern = wait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,"//a [@href='?asukoht=tavern']")))
+        tavern = wait(driver, 2).until(EC.visibility_of_element_located((By.XPATH,"//a [@href='?asukoht=tavern']")))
         tavern.click()
         print('Found button for tavern')
         sleep(0.5)
@@ -113,7 +113,7 @@ def getToMixingDrinks():
 
     # Enter food room like "köök"
     try:
-        foodRoom = wait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,"//li [@id='" + FOODROOM + "']")))
+        foodRoom = wait(driver, 2).until(EC.visibility_of_element_located((By.XPATH,"//li [@id='" + FOODROOM + "']")))
         foodRoom.click()
         print('Found button for wine cellar')
         sleep(0.5)
@@ -125,7 +125,7 @@ def getToMixingDrinks():
 
     # Select drink level
     try:
-        levelSelector = wait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,"//option [@value='" + DRINKLEVEL + "']")))
+        levelSelector = wait(driver, 2).until(EC.visibility_of_element_located((By.XPATH,"//option [@value='" + DRINKLEVEL + "']")))
         levelSelector.click()
         print('Found button for level selector')
     except TimeoutException:
