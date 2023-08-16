@@ -2,8 +2,8 @@
 
 This repository contains automation scripts for the crime-themed website game [Crime.ee](https://crime.ee).
 
-<span style="color:red">- Automates drink-making process in the game.</span>
-<span style="color:red">- Includes captcha-solving capability with about a 70% success rate.</span>
+- Automates drink-making process in the game.
+- Includes captcha-solving capability with about a 70% success rate.
 
 ## Usage
 
