@@ -1,9 +1,18 @@
-# Crime-autoclicker-and-captcha-solver
+# Crime-Automation-Scripts
 
-Makes drinks in crime website game. Also solves captcha with about 70% success rate.
+This repository contains automation scripts for the crime-themed website game [Crime.ee](https://crime.ee).
 
-Need to install python, python libraries and chrimedriver.exe and place it in the same folder as the python code to run it.
+<span style="color:red">- Automates drink-making process in the game.</span>
+<span style="color:red">- Includes captcha-solving capability with about a 70% success rate.</span>
 
-ocr.space APi might be down at some times.
-You can check it here if it's up. It gives result if it's up.
-https://api.ocr.space/parse/imageurl?apikey=helloworld&url=http://i.imgur.com/fwxooMv.png
+## Usage
+
+To run the scripts, follow these steps:
+
+1. Install Python and required Python libraries.
+2. Download `chromedriver.exe` and place it in the same folder as the Python code.
+3. Execute the Python script to begin automation.
+
+Please note:
+
+- The "ocr.space" API might experience downtime at times. You can check its status [here](https://api.ocr.space/parse/imageurl?apikey=helloworld&url=http://i.imgur.com/fwxooMv.png).
