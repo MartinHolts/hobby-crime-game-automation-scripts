@@ -1,4 +1,4 @@
-# Crime-Automation-Scripts
+# Crime game automation scripts
 
 This repository contains automation scripts for the crime-themed website game [Crime.ee](https://crime.ee).
 
