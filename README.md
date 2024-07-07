@@ -17,3 +17,4 @@ Please note:
 
 - The "ocr.space" API might experience downtime at times. You can check its status [here](https://api.ocr.space/parse/imageurl?apikey=helloworld&url=http://i.imgur.com/fwxooMv.png).
  
+ 
