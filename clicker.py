@@ -43,9 +43,9 @@ import re
 
 # Setup variables.
 # white, blue, green, black, red
-WORLD = 'red'
-USERNAME = 'uusmidagi1'
-PASSWORD = 'midagiuut'
+WORLD = ''
+USERNAME = ''
+PASSWORD = ''
 
 # ml_kitchen(Köök), ml_cellar(Veinikelder), ml_aerator(Gaseerimismasin)
 # ml_distiller(Puskarimasin), ml_cider(Siidriruum), ml_blender(Mahlamasin)
